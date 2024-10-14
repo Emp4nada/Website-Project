@@ -1,0 +1,36 @@
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    border-radius: 50%;
+}
+
+/*This class makes the list items side by side*/
+.sidebyside{
+    width: 100%;
+}
+.sidebyside li{
+    display: inline;
+    font-size: 36px;
+}
+/* formats the links*/
+nav{
+    text-align: center;
+    word-spacing: 100px;
+    font-size: 20px;
+}
+/*Default look of the links*/
+nav a{
+    color: white;
+    text-decoration: none;
+}
+/*Changes the color of each text link and underlines it (when mouse hovers over it)*/
+nav a:hover{
+    color:black;
+    text-decoration: underline;
+}
+nav ul{
+    list-style: none; /* removes bullet points*/
+}
