@@ -1,10 +1,21 @@
-
+/*styles the logo at the top of the website*/
 .logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 15%;
+    width: 27%;
     border-radius: 50%;
+}
+/*Organizes the head and styles it*/
+#container-grid{
+    display: grid;
+    grid-template-columns: 400px auto auto;
+    justify-content: stretch;
+    text-align: center;
+}
+/*styles the hours section*/
+#hours{
+    border: 1px solid black;
 }
 
 /*This class makes the list items side by side*/
