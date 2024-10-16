@@ -7,50 +7,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserve</title>
-    <img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo">
+    
+
+    <div id="container-grid">
+        <div id="hours">
+            <h3>Our Hours:</h3>
+            <h3>Sunday: CLOSED</h3>
+            <h3>M-F: 9:00am-6:00pm</h3>
+            <h3>Saturday: CLOSED</h3>
+        </div>
+        <img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo">
+        <p>Reservation Status:</p> 
+    </div>
+    
     <nav>
         <ul style="background-color: goldenrod;" class="sidebyside">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="inventory.html">Inventory</a></li>
-        <li><a href="reserve.html">Reserve</a></li>
-        <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="reserve.html">Reserve</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 </head>
 <style>
-    h1{text-align: center;}
-    h2{text-align: center;}
+    h1 {
+        text-align: center;
+    }
 
-    /* Aligning all elements inside form to make more visually appealing*/    
+    h2 {
+        text-align: center;
+    }
+
+    /* Aligning all elements inside form to make more visually appealing*/
     form {
-            display: grid;
-            grid-template-columns: 150px 1fr; 
-            grid-gap: 10px 20px;
-            align-items: center;
-            max-width: 600px; 
-            margin: 0 auto;}
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        grid-gap: 10px 20px;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     input[type="submit"] {
-            grid-column: span 2;
-            text-align: center;
-            padding: 10px;}
+        grid-column: span 2;
+        text-align: center;
+        padding: 10px;
+    }
+
     label {
-            text-align: right;
-            padding-right: 10px;}
-    input, select {
-            width: 100%; 
-            padding: 8px;
-            box-sizing: border-box;}
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
 </style>
+
 <body>
     <h1>Reservation Form</h1>
     <h2>Please fill out the following form with your information.</h2>
     <form action="/submit" method="POST">
-         <!-- Personal Information-->
+        <!-- Personal Information-->
         <label for="FirstName">First Name:</label>
         <input type="text" id="FirstName" name="FirstName" required>
         <label for="LastName">Last Name:</label>
         <input type="text" id="LastName" name="LastName" required>
-        
+
         <!-- Contact Information-->
         <label for="PhoneNum">Phone Number:</label>
         <input type="number" id="PhoneNum" name="PhoneNum" maxlength="12" required>
@@ -69,19 +95,22 @@
             <option value="">Please select the desired associate.</option>
             <option value="Person1">Person A</option>
             <option value="Person2">Person B</option>
-            <option value="Person3">Person C</option> </select>
+            <option value="Person3">Person C</option>
+        </select>
         <label for="CarChoice">Desired Car:</label>
         <select id="CarChoice" name="CarChoice" required>
             <option value="">Please select the desired car</option>
             <option value="Car1">Car A</option>
             <option value="Car2">Car B</option>
-            <option value="Car3">Car C</option> 
+            <option value="Car3">Car C</option>
             <option value="Car4">Car D</option>
-            <option value="Car5">Car E</option></select>
-        
+            <option value="Car5">Car E</option>
+        </select>
+
         <!-- Sunmission Button-->
         <input type="submit" value="Submit">
-        </form>
-    </body>
+</body>
+</form>
+</body>
 
 </html>
