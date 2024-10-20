@@ -1,3 +1,13 @@
+/*
+Experimental Hex Codes (from lightest to darkest):
+pale grey (matches logo's background) -- #f7f6f2
+pale yellow -- #fbf3de
+light yellow-brown -- #e6cf9b
+base gold (matches logo's hexagonal border) -- #8b743e
+brown -- #524119
+dark brown -- #191202
+*/
+
 /*styles the logo at the top of the website*/
 .logo {
     display: block;
@@ -20,28 +30,30 @@
 
 /*This class makes the list items side by side*/
 .sidebyside{
+    text-align: center;
+    word-spacing: 150px;
+    font-size: 20px;
     width: 100%;
+    padding: 10px;
+    border-bottom: 5px solid #e6cf9b;
+    list-style: none;
+}
+.sidebyside:hover{
+    border-color: #8b743e;
 }
 .sidebyside li{
-    display: inline;
+    display: inline-flex;
+    justify-content: space-around;
     font-size: 36px;
 }
-/* formats the links*/
-nav{
-    text-align: center;
-    word-spacing: 100px;
-    font-size: 20px;
-}
-/*Default look of the links*/
-nav a{
-    color: white;
+.sidebyside a{
+    color: #8b743e;
     text-decoration: none;
+    padding: 5px 20px;
+    border: 4px;
+    border-radius: 10px;
 }
-/*Changes the color of each text link and underlines it (when mouse hovers over it)*/
-nav a:hover{
-    color:black;
-    text-decoration: underline;
-}
-nav ul{
-    list-style: none; /* removes bullet points*/
+/* might change to js event handling (mouseover) */
+.sidebyside a:hover{
+    color: #524119;
 }
