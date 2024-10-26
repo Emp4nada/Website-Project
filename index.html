@@ -4,10 +4,11 @@
 <head>
     <script src="index.js" async></script>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="slider.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumpkin Auto Sales</title>
-    
+
 
     <div id="container-grid">
         <div id="hours">
@@ -16,10 +17,10 @@
             <h3>M-F: 9:00am-6:00pm</h3>
             <h3>Saturday: CLOSED</h3>
         </div>
-        <img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo">
-        <p>Reservation Status:</p> 
+        <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
+        <p class="rStatus">Reservation Status: None</p>
     </div>
-    
+
     <nav>
         <ul style="background-color: goldenrod;" class="sidebyside">
             <li><a href="index.html">Home</a></li>
@@ -31,7 +32,33 @@
 </head>
 
 <body>
-
+    <!--Content for the slider (sliding feature works off JavaScript)-->
+    <div class="slider">
+        <div class="content">
+            <div class="images">
+                <img src="salesman.png" id="slideimg">
+                <img src="Ford.png" id="slideimg">
+                <img src="DurangoG.png" id="slideimg">
+            </div>
+            <div onclick="side_slide(-1)" class="slide left">
+                <span class="arrow left" aria-hidden="true">&lt;</span>
+            </div>
+            <div onclick="side_slide(1)" class="slide right">
+                <span class="arrow right" aria-hidden="true">></span>
+            </div>
+        </div>
+    </div>
+    <h1><strong><u>Our Dealership</u></strong></h1>
+    <h3>We are a used car dealership located in Lumpkin County Georgia. 
+        We offer a varity of different cars throughtout
+        the year. Our website allows our customers to reserve one of our top of 
+        the line vehicles for an appointment with one of our three salesman. 
+    </h3>
 </body>
+<footer>
+    <strong>DISCLAMIER</strong>
+    <p>Our webpage only allows the reservation of a single vehicle. Please refer to our inventory page to see the cars
+        we offer.</p>
+</footer>
 
 </html>
