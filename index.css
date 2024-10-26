@@ -3,14 +3,14 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 27%;
+    width: 60%;
     border-radius: 50%;
 }
 /*Organizes the head and styles it*/
 #container-grid{
     display: grid;
-    grid-template-columns: 400px auto auto;
-    justify-content: stretch;
+    grid-template-columns: 400px 400px 400px;
+    justify-content: space-around;
     text-align: center;
 }
 /*styles the hours section*/
@@ -44,4 +44,15 @@ nav a:hover{
 }
 nav ul{
     list-style: none; /* removes bullet points*/
+}
+/* styles the all the pages with the same font and background-color */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f6f2;
+}
+footer{
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
 }
