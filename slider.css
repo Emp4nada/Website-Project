@@ -1,0 +1,44 @@
+.slider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20px;
+    text-align: center;
+}
+.content{
+    height: 400px;
+    width: 700px;
+    overflow: hidden;
+    position: relative;
+}
+.content .images{
+    height: 100%;
+    width: 100%;
+}
+.images img{
+    height: 100%;
+    width: 100%;
+}
+
+.content .slide{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid white;
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+}
+.content .slide:hover{
+    background: rgba(255,255,255, 0.2);
+}
+
+.slide span{
+    font-size: 35px;
+    color: white;
+}
+.content .right{
+    right: 0;
+}
