@@ -70,16 +70,16 @@
 <body>
     <h1>Reservation Form</h1>
     <h2>Please fill out the following form with your information.</h2>
-    <form action="/submit" method="POST">
+    <form id= "reserveForm" action="/submit" method="POST">
         <!-- Personal Information-->
-        <label for="FirstName">First Name:</label>
-        <input type="text" id="FirstName" name="FirstName" required>
-        <label for="LastName">Last Name:</label>
-        <input type="text" id="LastName" name="LastName" required>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
 
         <!-- Contact Information-->
-        <label for="PhoneNum">Phone Number:</label>
-        <input type="number" id="PhoneNum" name="PhoneNum" maxlength="12" required>
+        <label for="phoneNum">Phone Number:</label>
+        <input type="number" id="phoneNum" name="phoneNum" maxlength="12" required>
         <label for="Email">Email:</label>
         <input type="text" id="Email" name="Email" required>
 
@@ -93,12 +93,12 @@
         <label for="Salesman">Desired Sales Associate:</label>
         <select id="Salesman" name="Salesman" required>
             <option value="">Please select the desired associate.</option>
-            <option value="Person1">Person A</option>
-            <option value="Person2">Person B</option>
-            <option value="Person3">Person C</option>
+            <option value="Person1">Georgianna Lewandowski</option>
+            <option value="Person2">Mike Smith</option>
+            <option value="Person3">Luke Dawn</option>
         </select>
-        <label for="CarChoice">Desired Car:</label>
-        <select id="CarChoice" name="CarChoice" required>
+        <label for="carChoice">Desired Car:</label>
+        <select id="carChoice" name="carChoice" required>
             <option value="">Please select the desired car</option>
             <option value="Car1">Car A</option>
             <option value="Car2">Car B</option>
@@ -110,8 +110,9 @@
         <!-- Sunmission Button-->
         <input type="submit" value="Submit">
         <p></p>
-</body>
-</form>
+    </form>
+    <script src="reserve.js"></script>
+    </body>
 <footer>
     <strong>DISCLAMIER</strong>
     <p>Our webpage only allows the reservation of a single vehicle. Please refer to our inventory page to see the cars
