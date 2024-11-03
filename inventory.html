@@ -56,13 +56,14 @@
             float: left;
             margin: auto;
             margin-right: 10px;
-            color:#ffffff;
+            color: black;
         }
         #reserve_link{
             background-color: #524119;
             padding: 10px;
             margin-right: 10px;
-            border-radius: 0px 5px 10px;
+            border-radius: 10px 10px 10px;
+            width: 70;
         }
         #reserve_link:hover{
             background: linear-gradient(135deg, #524119, #191202);
@@ -71,54 +72,24 @@
             color: #ffffff;
             text-decoration: none;
         }
-        .review{
-            display: block;
-            background-color: #fbf3de;
-            color: #8b743e;
-            text-align: center;
-            margin: auto;
-            width: 20%;
-            height: 175px;
-            padding: 20px;
-            border:2px solid #8b743e;
-            border-radius: 10px;
-        }
-        .review:hover{
-            background: linear-gradient(135deg, #fbf3de, #e6cf9b);
-        }
-        input[type="text"]{
-            height: 60%;
-            width: 100%;
-            border-radius: 5px;
-            /* FIXME: wrap words around textbox */
-        }
-        /* might change to js click event handling */
-        input[type="text"]:hover{
-            border-color: #8b743e;
-        }
-        /* might change to js click event handling */
-        input[type="submit"]{
-            background-color: #8b743e;
-            color: #ffffff;
-            border: none;
-            padding: 3px;
-            border-radius: 3px;
-        }
     </style>
 </head>
 
 <body>
     <!-- should have 5 separate containers for car inventory; will add more if time allows -->
-    <!-- div container is only for #car1 because it's inline with the review form -->
     <div id="row1">
         <table class="inventory" id="car1">
             <tr>
                 <td rowspan="2">
                     <!-- shows placeholder image -->
-                    <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="placeholder image" id="car_photo">
+                    <img src="Ford (inv).png" alt="white f150" id="car_photo">
                 </td>
                 <td id="text">
-                    <p>Placeholder Text</p>
+                    <h1>Ford F-150</h1>
+                    <h3>MSRP: $65,000</h3>
+                    <h3>Fair (150k+ miles): $15,000</h3>
+                    <h3>Good (100k+ miles): $30,000</h3>
+                    <h3>Excellent (10k-100k miles): $45,000</h3>
                 </td>
             </tr>
             <tr>
@@ -130,25 +101,20 @@
                 </td>
             </tr>
         </table>
-        <!-- container allowing user to submit personal service review -->
-        <form class="review">
-            <label for="rating"><strong>Leave Us A Review!</strong></label><br>
-            <!-- silder is a placeholder for rating stars -->
-            <input type="range" name="rating" id="rating" min="1" max="5" required>
-            <!-- will add selection event handling (i.e., textbox changes background color once selected) with js -->
-            <input type="text" placeholder="Additional feedback (optional, 500 char limit)" id="feedback" name="feedback" maxlength="500"><br>
-            <label for="rating-submit" hidden>Submit</label>
-            <input type="submit" name="rating-submit" id="rating-submit">
-        </form>
+        
     </div>
     <table class="inventory" id="car2">
         <tr>
             <td rowspan="2">
                 <!-- shows placeholder image -->
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="placeholder image" id="car_photo">
+                <img src="Por.png" alt="Porsche Macan" id="car_photo">
             </td>
             <td id="text">
-                <p>Placeholder Text</p>
+                <h1>Porsche Macan</h1>
+                    <h3>MSRP: $68,500</h3>
+                    <h3>Fair (150k+ miles): $23,000</h3>
+                    <h3>Good (100k+ miles): $45,000</h3>
+                    <h3>Excellent (10k-100k miles): $50,000</h3>
             </td>
         </tr>
         <tr>
@@ -164,10 +130,14 @@
         <tr>
             <td rowspan="2">
                 <!-- shows placeholder image -->
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="placeholder image" id="car_photo">
+                <img src="Ferr.png" alt="Ferrari 488 GTB" id="car_photo">
             </td>
             <td id="text">
-                <p>Placeholder Text</p>
+                <h1>Ferrari 488 GTB</h1>
+                    <h3>MSRP: $262,647</h3>
+                    <h3>Fair (150k+ miles): $68,000</h3>
+                    <h3>Good (100k+ miles): $159,000</h3>
+                    <h3>Excellent (10k-100k miles): $240,000</h3>
             </td>
         </tr>
         <tr>
@@ -183,10 +153,14 @@
         <tr>
             <td rowspan="2">
                 <!-- shows placeholder image -->
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="placeholder image" id="car_photo">
+                <img src="merc.png" alt="Mercedes-Benz G500" id="car_photo">
             </td>
             <td id="text">
-                <p>Placeholder Text</p>
+                <h1>Mercedes-Benz G500</h1>
+                    <h3>MSRP: $73,000</h3>
+                    <h3>Fair (150k+ miles): $20,000</h3>
+                    <h3>Good (100k+ miles): $38,000</h3>
+                    <h3>Excellent (10k-100k miles): $58,000</h3>
             </td>
         </tr>
         <tr>
@@ -202,18 +176,15 @@
         <tr>
             <td rowspan="2">
                 <!-- shows placeholder image -->
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="placeholder image" id="car_photo">
+                <img src="Durango.png" alt="Dodge Durango Discontinued" id="car_photo">
             </td>
             <td id="text">
-                <p>Placeholder Text</p>
+                <h1>No longer available</h1>
             </td>
         </tr>
         <tr>
             <td>
-                <nav id="reserve_link">
-                    <!-- will add address specific link once available -->
-                    <a href="reserve.html">Click Here to Reserve</a>
-                </nav>
+
             </td>
         </tr>
     </table>
