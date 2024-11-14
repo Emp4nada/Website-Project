@@ -16,7 +16,8 @@
             <h3>Saturday: CLOSED</h3>
         </div>
         <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
-        <p class="rStatus">Reservation Status: None</p>
+        <p class="rStatus"> Reservation Status: None 
+            <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."> </p> 
     </div>
 
     <nav>
@@ -31,6 +32,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Car Dealership</title>
     <style>
+        #greenCheck {
+            display: none;
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
         h1 {
             color: #333;
         }
@@ -53,7 +62,23 @@
         }
     </style>
 </head>
-
+<script>
+    //event listener for once the page is loaded to check if the form has been filled out
+document.addEventListener('DOMContentLoaded', function () {
+    const reserveForm = document.getElementById('reserveForm');
+    const reservationStatus = document.querySelector('.rStatus');
+    const greenCheck = document.getElementById('greenCheck');
+    
+    //if session storage shows the form has been completed the reservation status is updated
+    if (sessionStorage.getItem('formFinished') === 'true') {
+        displayReservationStatus();}
+        function displayReservationStatus() {
+            reservationStatus.textContent = 'Reservation Status: Confirmed ';
+            greenCheck.style.display = 'inline';
+            reservationStatus.appendChild(greenCheck);
+        }
+    });
+</script>
 <body>
 
     <h1>Contact Us</h1>

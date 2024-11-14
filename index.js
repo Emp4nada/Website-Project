@@ -19,3 +19,18 @@ function showImg(e) {
     }
     img[indexValue - 1].style.display = "block";
 }
+//event listener for once the page is loaded to check if the form has been filled out
+document.addEventListener('DOMContentLoaded', function () {
+    const reserveForm = document.getElementById('reserveForm');
+    const reservationStatus = document.querySelector('.rStatus');
+    const greenCheck = document.getElementById('greenCheck');
+    
+    //if session storage shows the form has been completed the reservation status is updated
+    if (sessionStorage.getItem('formFinished') === 'true') {
+        displayReservationStatus();}
+        function displayReservationStatus() {
+            reservationStatus.textContent = 'Reservation Status: Confirmed ';
+            greenCheck.style.display = 'inline';
+            reservationStatus.appendChild(greenCheck);
+        }
+    });
