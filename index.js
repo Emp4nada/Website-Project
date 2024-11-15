@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('formFinished') === 'true') {
         displayReservationStatus();}
         function displayReservationStatus() {
-            reservationStatus.textContent = 'Reservation Status: Confirmed ';
+            reservationStatus.innerHTML = '<strong>Reservation Status: Confirmed</stong> ';
             greenCheck.style.display = 'inline';
             reservationStatus.appendChild(greenCheck);
         }
