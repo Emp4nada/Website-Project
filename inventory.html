@@ -17,12 +17,12 @@
             <h3>Saturday: CLOSED</h3>
         </div>
         <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
-        <p class="rStatus"> Reservation Status: None 
-            <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."> </p> 
+        <p class="rStatus"><strong> Reservation Status: None 
+            <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."></strong> </p> 
     </div>
     
     <nav>
-        <ul style="background-color: goldenrod;" class="sidebyside">
+        <ul class="sidebyside">
             <li><a href="index.html">Home</a></li>
             <li><a href="inventory.html">Inventory</a></li>
             <li><a href="reserve.html">Reserve</a></li>
@@ -38,49 +38,106 @@
             vertical-align: middle;
             margin-left: 5px;
         }
-        /* current background colors are to differentiate containers and are subject to change */
+        /* formats container containing first car listing and rating review form */
         #row1{
-            display: inline-flex;
-            width: 100%;
-        }
-        /* might change to grid container */
-        .inventory {
-            display: flex;
-            background-color: #e6cf9b;
-            margin: 50px 20px;
-            width: 70%;
-            border-radius: 20px;
-            font-size: 12pt;
-        }
-        /* might change to js mouseover event handling */
-        table:hover{
-            box-shadow: inset 0px 0px 7px #524119;
-        }
-        #car_photo{
-            margin: 10px;
-            height: 350px;
-            border-radius: 15px;
-        }
-        #text{
-            float: left;
-            margin: auto;
-            margin-right: 10px;
-            color: black;
-        }
-        #reserve_link{
-            background-color: #524119;
-            padding: 10px;
-            margin-right: 10px;
-            border-radius: 10px 10px 10px;
-            width: 70;
-        }
-        #reserve_link:hover{
-            background: linear-gradient(135deg, #524119, #191202);
-        }
-        nav a{
-            color: #ffffff;
-            text-decoration: none;
-        }
+                display: inline-flex;
+                width: 100%;
+            }
+            /* formats car inventory containers */
+            .inventory {
+                display: grid;
+                justify-content: space-between;
+                grid-template-columns: 300px, 700px;
+                margin: 50px 20px;
+                width: 70%;
+                font-size: 12pt;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            /* formats car photos */
+            #car_photo{
+                margin: 10px;
+                height: 350px;
+                border-radius: 15px;
+            }
+            /* formats car information text */
+            #text{
+                float: left;
+                margin: auto;
+                margin-right: 10px;
+                color:#8b743e;
+            }
+            /* formats car reservation link container */
+            #reserve_link{
+                display: inline-flex;
+                background-color: #524119;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 0px 5px 10px;
+            }
+            #reserve_link a{
+                color: #ffffff;
+                font-size: 16pt;
+            }
+            #reserve_link:hover{
+                background: linear-gradient(135deg, #524119, #191202);
+                
+            }
+            /* formats review container */
+            .review{
+                display: grid;
+                grid-column: auto;
+                background: linear-gradient(135deg, #e0d899, #8b743e);
+                color: #ffffff;
+                text-align: center;
+                margin: auto;
+                width: 20%;
+                height: 185px;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            /* formats review star rating */
+            .star-rating{
+                display: inline-flex;
+                text-align: center;
+                justify-content: space-evenly;
+                font-size: 20pt;
+            }
+            /* might change to js click event handling */
+            .star-rating > span:hover{
+                color: #524119;
+                cursor: pointer;
+            }
+            /* placeholder class for if a star is enabled (NOT FINISHED) */
+            .star{
+                color: #524119;
+            }
+            /* formats review textarea */
+            textarea{
+                height: 75px;
+                width: 100%;
+                margin: 10px 0px;
+                background-color: #dfdfdf;
+            }
+            textarea:hover{
+                background-color: #ffffff;
+            }
+            /* formats review submit button */
+            input[type="submit"]{
+                justify-self: center;
+                background-color: #524119;
+                color: #ffffff;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+            input[type="submit"]:hover{
+                background: linear-gradient(135deg, #524119, #191202);
+                cursor: pointer;
+            }
     </style>
 </head>
 <script>    
@@ -94,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('formFinished') === 'true') {
         displayReservationStatus();}
         function displayReservationStatus() {
-            reservationStatus.textContent = 'Reservation Status: Confirmed ';
+            reservationStatus.innerHTML = '<strong>Reservation Status: Confirmed</strong> ';
             greenCheck.style.display = 'inline';
             reservationStatus.appendChild(greenCheck);
         }
@@ -103,32 +160,54 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <body>
     <!-- should have 5 separate containers for car inventory; will add more if time allows -->
-    <div id="row1">
-        <table class="inventory" id="car1">
-            <tr>
-                <td rowspan="2">
-                    <!-- shows placeholder image -->
-                    <img src="Ford (inv).png" alt="white f150" id="car_photo">
-                </td>
-                <td id="text">
-                    <h1>Ford F-150</h1>
-                    <h3>MSRP: $65,000</h3>
-                    <h3>Fair (150k+ miles): $15,000</h3>
-                    <h3>Good (100k+ miles): $30,000</h3>
-                    <h3>Excellent (10k-100k miles): $45,000</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <nav id="reserve_link">
-                        <!-- will add address specific link once available -->
-                        <a href="reserve.html">Click Here to Reserve</a>
-                    </nav>
-                </td>
-            </tr>
-        </table>
-        
-    </div>
+        <!-- div container is only for #car1 because it's inline with the review form -->
+        <div id="row1">
+            <table class="inventory" id="car1">
+                <tr>
+                    <td rowspan="2">
+                        <img src="Ford (inv).png" alt="White F150" id="car_photo">
+                    </td>
+                    <td id="text">
+                        <h1>Ford F-150</h1>
+                        <h2>MSRP: $65,000 | Available</h2>
+                        <h3>Condition Estimates:</h3>
+                        <p>Fair (150+ miles): $15,000</p>
+                        <p>Good (100k+ miles): $30,000</p>
+                        <p>Excellent (10k-100k miles): $45,000</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="justify-content: none;">
+                        <nav id="reserve_link">
+                            <!-- will add address specific link once available -->
+                            <a href="reserve.html">Click Here to Reserve</a>
+                        </nav>
+                    </td>
+                </tr>
+            </table>
+            <!-- container allowing user to submit personal service review -->
+            <!-- hidden labels are for accessibility purposes (e.g., screen-readers) -->
+            <div class="review">
+                <form>
+                    <label for="rating" style="font-size: 16pt;"><strong>Leave Us A Review!</strong></label>
+                    <!-- silder is a placeholder for rating stars -->
+                    <label for="stars" hidden>Rate us out of Five Stars</label>
+                    <div class="star-rating" id="stars">
+                        <span id="1">&#9733;</span>
+                        <span id="2">&#9733;</span>
+                        <span id="3">&#9733;</span>
+                        <span id="4">&#9733;</span>
+                        <span id="5">&#9733;</span>
+                    </div>
+                    <!-- will add selection event handling (i.e., textbox changes background color once selected) with js -->
+                    <label for="additional-feedback" hidden>Additional Feedback</label>
+                    <textarea id="additional-feedback" name="additional-feedback" rows="10" placeholder="Additional feedback (optional, 500 char limit)" maxlength="500"></textarea>
+                    <!-- <input type="text" placeholder="Additional feedback (optional, 500 char limit)" id="feedback" name="feedback" maxlength="500"><br> -->
+                    <label for="rating-submit" hidden>Submit</label>
+                    <input type="submit" name="rating-submit" id="rating-submit">
+                </form>
+            </div>
+        </div>
     <table class="inventory" id="car2">
         <tr>
             <td rowspan="2">
