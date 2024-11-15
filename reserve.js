@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayReservationStatus();});
     // function to change the reservation status text and show the green check image
     function displayReservationStatus() {
-        reservationStatus.textContent = 'Reservation Status: Confirmed ';
+        reservationStatus.innerHTML = '<strong>Reservation Status: Confirmed</strong> ';
         greenCheck.style.display = 'inline';
         reservationStatus.appendChild(greenCheck);
     }
