@@ -75,7 +75,7 @@ reserveForm.addEventListener('submit', function(event){
     sessionStorage.setItem('formFinished', 'true');
     //steps to fix reservation status
     document.getElementById('greenCheck').style.display = 'inline';
-    document.querySelector('.rStatus').textContent = 'Reservation Status: Confirmed ';
+    document.querySelector('.rStatus').innerHTML = '<strong>Reservation Status: Confirmed</strong> ';
     document.querySelector('.rStatus').appendChild(document.getElementById('greenCheck'));
     reserveForm.submit();})
 //event listener for once the page is loaded to check if the form has been filled out
