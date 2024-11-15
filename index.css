@@ -6,6 +6,35 @@
     vertical-align: middle;
     margin-left: 5px;
 }
+/*
+Important Hex Codes (from lightest to darkest):
+pale grey (mathes logo background) -- #f7f6f2
+pale yellow -- #fbf3de
+light tan -- #e0d899
+light yellow-brown -- #e6cf9b
+base gold (matches logo hexagonal border -- #8b743e
+brown -- #524119
+dark brown -- #191202
+*/
+
+/* styles the all the pages with the same font and background-color */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f7f6f2;
+}
+footer{
+    color: #8b743e;
+    font-size: 20px;
+    padding: 20px;
+    margin: none;
+    border-top: 5px solid #8b743e;
+    border-bottom: 5px solid #8b743e;
+    text-align: center;
+}
+/* default link styling */
+nav a{
+    text-decoration: none;
+}
 /*styles the logo at the top of the website*/
 .logo {
     display: block;
@@ -14,53 +43,55 @@
     width: 60%;
     border-radius: 50%;
 }
+.logo:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 /*Organizes the head and styles it*/
 #container-grid{
     display: grid;
-    grid-template-columns: 400px 400px 400px;
-    justify-content: space-around;
+    grid-template-columns: 500px 363px 492px;
+    /*justify-content: space-between;*/
     text-align: center;
+    justify-content: center;
+    gap: 250px 230px;
 }
 /*styles the hours section*/
 #hours{
-    border: 1px solid black;
+    background: linear-gradient(135deg, #e0d899, #8b743e);
+    color: #ffffff;
+    border-radius: 0px 10px 20px;
 }
-
 /*This class makes the list items side by side*/
 .sidebyside{
-    width: 100%;
+    text-align: center;
+    word-spacing: 100px;
+    font-size: 20px;
+    padding: 5px;
+    border-top: 5px solid #8b743e;
+    border-bottom: 5px solid #8b743e;
+    list-style: none;
 }
 .sidebyside li{
     display: inline;
     font-size: 36px;
 }
-/* formats the links*/
-nav{
-    text-align: center;
-    word-spacing: 100px;
-    font-size: 20px;
-}
-/*Default look of the links*/
-nav a{
-    color: white;
+/*Default look of .sidebyside links*/
+.sidebyside a{
+    color: #8b743e;
     text-decoration: none;
 }
 /*Changes the color of each text link and underlines it (when mouse hovers over it)*/
-nav a:hover{
-    color:black;
-    text-decoration: underline;
+.sidebyside a:hover{
+    color: #524119;
 }
-nav ul{
-    list-style: none; /* removes bullet points*/
-}
-/* styles the all the pages with the same font and background-color */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f6f2;
-}
-footer{
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    text-align: center;
+/* formats reservation status container */
+.rStatus{
+    height: 20px;
+    width: 70%;
+    background: linear-gradient(135deg, #e0d899, #8b743e);
+    font-size: 16pt;
+    color: #ffffff;
+    justify-self: end;
+    padding: 15px;
+    border-radius: 10px 0px 10px 20px;
 }
