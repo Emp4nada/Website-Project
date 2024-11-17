@@ -66,16 +66,33 @@ reserveForm.addEventListener('change', inputChange);
 let reservedCarChoiceCarChoice;
 //event listener for form submission and function to follow upon completion
 reserveForm.addEventListener('submit', function(event){
-    event.preventDefault();
     //creating the alert to confirm to users the car they reserved
     const selectCarChoice = document.getElementById('carChoice');
     const reservedCarChoice = selectCarChoice.options[selectCarChoice.selectedIndex].text;
     alert('Form Submitted. You reserved the ' + reservedCarChoice);
+    //once form is submitted, all values will be given a variable
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const phoneNum = document.getElementById('phoneNum').value;
+    const salesMan = document.getElementById('Salesman').value;
+    const car = document.getElementById('carChoice').value;
+    const date = document.getElementById('Date').value;
+    const time = document.getElementById('Time').value;
+    const email = document.getElementById('Email').value;
+    //all variable values will be stored in sessionStorage
+    sessionStorage.setItem("firstName", firstName);
+    sessionStorage.setItem("lastName", lastName);
+    sessionStorage.setItem("phoneNum", phoneNum);
+    sessionStorage.setItem("salesMan", salesMan);
+    sessionStorage.setItem("Email", email);
+    sessionStorage.setItem("carChoice",car);
+    sessionStorage.setItem("Date", date);
+    sessionStorage.setItem("Time", time);
     //utilizing session storage to track that to form has been completed
     sessionStorage.setItem('formFinished', 'true');
     //steps to fix reservation status
     document.getElementById('greenCheck').style.display = 'inline';
-    document.querySelector('.rStatus').innerHTML = '<strong>Reservation Status: Confirmed</strong> ';
+    document.querySelector('.rStatus').textContent = 'Reservation Status: Confirmed ';
     document.querySelector('.rStatus').appendChild(document.getElementById('greenCheck'));
     reserveForm.submit();})
 //event listener for once the page is loaded to check if the form has been filled out
@@ -86,9 +103,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
     //checks if the form has been previously submitted by checking session storage
     if (sessionStorage.getItem('formFinished') === 'true') {
-        displayReservationStatus();}
+        displayReservationStatus(); 
+        //will prevent user from reserving another car
+        window.location.href ="confirmation.html";}
+        
      reserveForm.addEventListener('submit', function (event) {
-        event.preventDefault();
         sessionStorage.setItem('formFinished', 'true');
         displayReservationStatus();});
     // function to change the reservation status text and show the green check image
