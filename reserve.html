@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserve</title>
     
-
+    <!--Our hours container-->
     <div id="container-grid">
         <div id="hours">
             <h3>Our Hours:</h3>
             <h3>Sunday: CLOSED</h3>
-            <h3>M-F: 9:00am-6:00pm</h3>
+            <h3>M-F: 9:00am-5:00pm</h3>
             <h3>Saturday: CLOSED</h3>
         </div>
         <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
@@ -21,7 +21,7 @@
         <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."></strong> </p> 
 
     </div>
-    
+    <!--Navigation links-->
     <nav>
         <ul class="sidebyside">
             <li><a href="index.html">Home</a></li>
@@ -80,7 +80,7 @@
 <body>
     <h1>Reservation Form</h1>
     <h2>Please fill out the following form with your information.</h2>
-    <form id= "reserveForm" action="/submit" method="POST">
+    <form action="/confirmation.html" id= "reserveForm">
         <!-- Personal Information-->
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
@@ -103,34 +103,36 @@
         <label for="Salesman">Desired Sales Associate:</label>
         <select id="Salesman" name="Salesman" required>
             <option value="">Please select the desired associate.</option>
-            <option value="Person1">Georgianna Lewandowski</option>
-            <option value="Person2">Mike Smith</option>
-            <option value="Person3">Luke Dawn</option>
+            <option value="Georgianna Lewandowski">Georgianna Lewandowski</option>
+            <option value="Mike Smith">Mike Smith</option>
+            <option value="Luke Dawn">Luke Dawn</option>
         </select>
         <label for="carChoice">Desired Car:</label>
         <select id="carChoice" name="carChoice" required>
             <option value="">Please select the desired car</option>
-            <option value="Car1">Ford F150 - Fair</option>
-            <option value="Car2">Ford F150 - Good</option>
-            <option value="Car3">Ford F150 - Excellent</option>
-            <option value="Car4">Porsche Macan - Fair</option>
-            <option value="Car5">Porsche Macan - Good</option>
-            <option value="Car6">Porsche Macan - Excellent</option>
-            <option value="Car7">Ferrari 488 GTB - Fair</option>
-            <option value="Car8">Ferrari 488 GTB - Good</option>
-            <option value="Car9">Ferrari 488 GTB - Excellent</option>
-            <option value="Car10">Mercedez-Benz G500 - Fair</option>
-            <option value="Car11">Mercedez-Benz G500 - Good</option>
-            <option value="Car12">Mercedez Benz G500 - Excellent</option>
+            <option value="Ford F150 - Fair">Ford F150 - Fair</option>
+            <option value="Ford F150 - Good">Ford F150 - Good</option>
+            <option value="Ford F150 - Excellent">Ford F150 - Excellent</option>
+            <option value="Porsche Macan - Fair">Porsche Macan - Fair</option>
+            <option value="Porsche Macan - Good">Porsche Macan - Good</option>
+            <option value="Porsche Macan - Excellent">Porsche Macan - Excellent</option>
+            <option value="Ferrari 488 GTB - Fair">Ferrari 488 GTB - Fair</option>
+            <option value="Ferrari 488 GTB - Good">Ferrari 488 GTB - Good</option>
+            <option value="Ferrari 488 GTB - Excellent">Ferrari 488 GTB - Excellent</option>
+            <option value="Mercedez-Benz G500 - Fair">Mercedez-Benz G500 - Fair</option>
+            <option value="Mercedez-Benz G500 - Good">Mercedez-Benz G500 - Good</option>
+            <option value="Mercedez Benz G500 - Excellent">Mercedez Benz G500 - Excellent</option>
             
         </select>
 
         <!-- Sunmission Button-->
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="submit">
         <p></p>
+        
     </form>
     <script src="reserve.js"></script>
     </body>
+ <!--Disclaimer that is present in each page-->
 <footer>
     <strong>DISCLAMIER</strong>
     <p>Our webpage only allows the reservation of a single vehicle. Please refer to our inventory page to see the cars
@@ -138,6 +140,3 @@
 </footer>
 
 </html>
-
-</html>
-
