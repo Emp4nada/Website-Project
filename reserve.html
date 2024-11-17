@@ -40,11 +40,7 @@
             vertical-align: middle;
             margin-left: 5px;
         }
-    h1 {
-        text-align: center;
-    }
-
-    h2 {
+    h1, h2 {
         text-align: center;
     }
 
@@ -59,9 +55,15 @@
     }
 
     input[type="submit"] {
+        background-color: #524119;
+        color: #ffffff;
         grid-column: span 2;
         text-align: center;
         padding: 10px;
+    }
+    input[type="submit"]:hover{
+        background: linear-gradient(135deg, #524119, #191202);
+        cursor: pointer;
     }
 
     label {
@@ -134,7 +136,7 @@
     </body>
  <!--Disclaimer that is present in each page-->
 <footer>
-    <strong>DISCLAMIER</strong>
+    <h3>DISCLAIMER</h3>
     <p>Our webpage only allows the reservation of a single vehicle. Please refer to our inventory page to see the cars
         we offer.</p>
 </footer>
