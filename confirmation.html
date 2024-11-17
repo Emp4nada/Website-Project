@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="reserve.js" async></script>
+        <link rel="stylesheet" href="index.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Confirmed</title>
+        
+        <!--Our hours container-->
+        <div id="container-grid">
+            <div id="hours">
+                <h3>Our Hours:</h3>
+                <h3>Sunday: CLOSED</h3>
+                <h3>M-F: 9:00am-5:00pm</h3>
+                <h3>Saturday: CLOSED</h3>
+            </div>
+            <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
+            <p class="rStatus"><strong>Reservation Status: None 
+                <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."></strong> </p> 
+        </div>
+        <!--Navigation links-->
+        <nav>
+            <ul class="sidebyside">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="reserve.html">Reserve</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </head>
+<body>
+    <style>
+        /*styles the confirmation html information grid*/
+        #confirmBox{
+           display: grid; 
+           grid-template-columns: 600px 600px 600px;
+           justify-content: space-around;
+           padding-top: 100px;
+           width: 100%;
+           padding-bottom: 100px;
+           
+        }
+        #confirmBox h1{
+           text-align: center;
+           background: linear-gradient(135deg, #e0d899, #8b743e);
+           color: #ffff;
+           border-radius: 10px;
+        }
+    </style>
+    <script>
+        //Items are retrieved from sessionStorage for 
+        firstName = sessionStorage.getItem("firstName");
+        lastName = sessionStorage.getItem("lastName");
+        phoneNum = sessionStorage.getItem("phoneNum");
+        //formats the phone number
+        phoneNumFormated = formatPhoneNumber(phoneNum);
+        salesMan = sessionStorage.getItem("salesMan");
+        email = sessionStorage.getItem("Email");
+        car = sessionStorage.getItem("carChoice");
+        date = sessionStorage.getItem("Date");
+        const [year, month, day] = date.split("-");
+        date = new Date(year,month,day);
+        // Formats the date as MM/DD/YYYY using the Intl.DateTImeFormat object
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            month: '2-digit', 
+            day: '2-digit', 
+            year: 'numeric' 
+        });
+        const formattedDate = formatter.format(date);
+        time = sessionStorage.getItem("Time");
+        //changes to AM and PM time.
+        trueTime = militaryToRegularTime(time);
+        //doc.write is used to write stored values as html
+        document.write("<div id='confirmBox'>" +
+            "<h1>Thank you " + firstName + " " + lastName + " for your reservation! We are proud to have you as a customer! We will contact you soon regarding your appointment.</h1>" + 
+            "<h1><u>Appointment Details</u><br> Car: "+ car + 
+            "<br> Date: " + formattedDate + 
+            "<br>Time: " + trueTime + "</h1>" +
+            "<h1><u>Your Contact info:</u><br>" +
+            "Name: " + firstName + " " + lastName + "<br>" +
+            "Phone Number: " + phoneNumFormated + "<br>" +
+            "Email: " + email + "</h1>" +
+            "</div>");
+
+        //time in session storage is in military time. This fixes it.
+        function militaryToRegularTime(militaryTime) {
+  
+            // Split the military time string into hours and minutes
+            const [hours, minutes] = militaryTime.split(":");
+
+            // Convert hours to a number
+            let hoursNum = parseInt(hours);
+
+            // Determine AM/PM
+            const period = hoursNum >= 12 ? "PM" : "AM";
+
+            // Adjust hours for 12-hour format
+            if (hoursNum > 12) {
+            hoursNum -= 12;
+            } else if (hoursNum === 0) {
+                hoursNum = 12;
+            }
+
+            // Format the regular time string
+            const regularTime = `${hoursNum}:${minutes} ${period}`;
+
+            return regularTime;
+        }
+        //formats phone number
+        function formatPhoneNumber(phoneNumberString) {
+            var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+            var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+            if (match) {
+                return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+            }
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function () {
+        const reserveForm = document.getElementById('reserveForm');
+        const reservationStatus = document.querySelector('.rStatus');
+        const greenCheck = document.getElementById('greenCheck');
+    
+        //if session storage shows the form has been completed the reservation status is updated
+        if (sessionStorage.getItem('formFinished') === 'true') {
+            displayReservationStatus();}
+            function displayReservationStatus() {
+                reservationStatus.innerHTML = '<strong>Reservation Status: Confirmed</stong> ';
+                greenCheck.style.display = 'inline';
+                reservationStatus.appendChild(greenCheck);
+        }
+    });
+    </script>
+</body>
+ <!--Disclaimer that is present in each page-->
+ <footer>
+    <strong>DISCLAMIER</strong>
+    <p>Please open a new window to reserve a different car.</p>
+</footer>
+</html>
