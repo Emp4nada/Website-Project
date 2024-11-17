@@ -21,6 +21,7 @@ dark brown -- #191202
 body {
     font-family: "Arial", sans-serif;
     background-color: #f7f6f2;
+    color: #8b743e;;
 }
 footer{
     color: #8b743e;
@@ -49,11 +50,9 @@ nav a{
 /*Organizes the head and styles it*/
 #container-grid{
     display: grid;
-    grid-template-columns: 500px 363px 492px;
-    /*justify-content: space-between;*/
+    grid-template-columns: 400px 375px 400px;
+    justify-content: space-between;
     text-align: center;
-    justify-content: center;
-    gap: 250px 230px;
 }
 /*styles the hours section*/
 #hours{
@@ -86,7 +85,7 @@ nav a{
 }
 /* formats reservation status container */
 .rStatus{
-    height: 20px;
+    height: fit-content;
     width: 70%;
     background: linear-gradient(135deg, #e0d899, #8b743e);
     font-size: 16pt;
@@ -95,4 +94,3 @@ nav a{
     padding: 15px;
     border-radius: 10px 0px 10px 20px;
 }
-
