@@ -34,3 +34,4 @@ document.addEventListener('DOMContentLoaded', function () {
             reservationStatus.appendChild(greenCheck);
         }
     });
+
