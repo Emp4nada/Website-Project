@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="index.js" async></script>
     <link rel="stylesheet" href="index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
             <h3>Saturday: CLOSED</h3>
         </div>
         <a href="index.html"><img src="WebLogo.png" alt="Logo of Lumpkin Auto Salse" class="logo"></a>
-        <p class="rStatus"><strong> Reservation Status: None 
+        <p class="rStatus"><strong style="color:#ffffff;"> Reservation Status: None 
             <img id="greenCheck" src="greencheck.png" alt="Green Check showing a car is reserved."></strong> </p> 
     </div>
     <!--Navigation links-->
@@ -37,8 +38,8 @@
             vertical-align: middle;
             margin-left: 5px;
         }
-        /* formats container containing first car listing and rating review form */
-        #row1{
+        /* formats containers containing both car listings and reviews */
+        #row{
                 display: inline-flex;
                 width: 100%;
             }
@@ -98,20 +99,38 @@
                 border-radius: 5px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
+            /* formats reviewer profile pictures */
+            #reviewerImg{
+                width: 50px;
+                border: 2px solid #ffffff;
+                border-radius: 50%;
+            }
             /* formats review star rating */
             .star-rating{
                 display: inline-flex;
                 text-align: center;
                 justify-content: space-evenly;
                 font-size: 20pt;
+                flex-direction: row-reverse;
             }
-            /* might change to js click event handling */
-            .star-rating > span:hover{
-                color: #524119;
+            .star-rating span{
                 cursor: pointer;
+                transition: color .2s, transform .2s;
             }
-            /* placeholder class for if a star is enabled (NOT FINISHED) */
-            .star{
+            .star-rating span:hover{
+                color: #524119;
+                transform: scale(1.3);
+            }
+            .star-rating span:hover ~ span{
+                color: #524119;
+            }
+            .star-rating span[data-clicked]{
+                color: #524119;
+            }
+            .star-rating span[data-clicked] ~ span{
+                color: #524119;
+            }
+            strong{
                 color: #524119;
             }
             /* formats review textarea */
@@ -140,15 +159,15 @@
     </style>
 </head>
 <script>    
-//event listener for once the page is loaded to check if the form has been filled out
-document.addEventListener('DOMContentLoaded', function () {
-    const reserveForm = document.getElementById('reserveForm');
-    const reservationStatus = document.querySelector('.rStatus');
-    const greenCheck = document.getElementById('greenCheck');
-    
-    //if session storage shows the form has been completed the reservation status is updated
-    if (sessionStorage.getItem('formFinished') === 'true') {
-        displayReservationStatus();}
+    //event listener for once the page is loaded to check if the form has been filled out
+    document.addEventListener('DOMContentLoaded', function () {
+        const reserveForm = document.getElementById('reserveForm');
+        const reservationStatus = document.querySelector('.rStatus');
+        const greenCheck = document.getElementById('greenCheck');
+        
+        //if session storage shows the form has been completed the reservation status is updated
+        if (sessionStorage.getItem('formFinished') === 'true') {
+            displayReservationStatus();}
         function displayReservationStatus() {
             reservationStatus.innerHTML = '<strong>Reservation Status: Confirmed</strong> ';
             greenCheck.style.display = 'inline';
@@ -156,142 +175,254 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // ratings event listener
+    document.addEventListener("DOMContentLoaded", function() {
+        // highlights all review stars on and to the left of user click
+        let stars = document.querySelectorAll('.star-rating > span');
+        let hasRated = false;
+        // loop through stars list
+        for (let star of stars) {
+            star.addEventListener("click", function() {
+                // resets rating if user clicks another star
+                let children = 	star.parentElement.children;
+                for(let child of children){
+                    if(child.getAttribute("data-clicked")){
+                        child.removeAttribute("data-clicked");	
+                    }
+                }
+                // assigns attribute to enable stars
+                this.setAttribute("data-clicked", "true");
+                hasRated = true;
+            });
+        };
+        // changes review submission container once submit button is clicked
+        // will not change if star rating is not given
+        document.addEventListener("submit", function(e) {
+            let review = document.querySelector(".review");
+            if (hasRated) {
+                // clear container
+                review.innerHTML = "";
+                // replace container with thank you message
+                review.innerHTML = "<h1>Your Feedback is Appreciated!</h1>";
+            }
+            else {
+                e.preventDefault();
+            }
+        })
+    });
+    
+
+    
 </script>
 <body>
-    <!-- should have 5 separate containers for car inventory; will add more if time allows -->
-    <!-- div container is only for #car1 because it's inline with the review form -->
-    <div id="row1">
-        <table class="inventory" id="car1">
+        <!-- div container is only for #car1 because it's inline with the review form -->
+        <div id="row">
+            <!-- Ford F150 -->
+            <table class="inventory" id="car1">
+                <tr>
+                    <td rowspan="2">
+                        <img src="Ford (inv).png" alt="White F150" id="car_photo">
+                    </td>
+                    <td id="text">
+                        <h1>Ford F-150</h1>
+                        <h2>MSRP: $65,000 | Available</h2>
+                        <h3>Condition Estimates:</h3>
+                        <p>Fair (150+ miles): $15,000</p>
+                        <p>Good (100k+ miles): $30,000</p>
+                        <p>Excellent (10k-100k miles): $45,000</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="justify-content: none;">
+                        <nav id="reserve_link">
+                            <a href="reserve.html">Click Here to Reserve</a>
+                        </nav>
+                    </td>
+                </tr>
+            </table>
+            <!-- container allowing user to submit personal service review -->
+            <!-- hidden labels are for accessibility purposes (e.g., screen-readers) -->
+            <div class="review">
+                <form>
+                    <label for="rating" style="font-size: 16pt;"><strong style="color:#ffffff;">Leave Us A Review!</strong></label>
+                    <label for="stars" hidden>Rate us out of Five Stars</label>
+                    <div class="star-rating">
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                    </div>
+                    <label for="additional-feedback" hidden>Additional Feedback</label>
+                    <textarea id="additional-feedback" name="additional-feedback" rows="10" placeholder="Additional feedback (optional, 500 char limit)" maxlength="500"></textarea>
+                    <label for="rating-submit" hidden>Submit</label>
+                    <input type="submit" name="rating-submit" id="rating-submit">
+                </form>
+            </div>
+        </div>
+    <div id="row">
+        <!-- Porsche Macan -->
+        <table class="inventory" id="car2">
             <tr>
                 <td rowspan="2">
-                    <img src="Ford (inv).png" alt="White F150" id="car_photo">
+                    
+                    <img src="Por.png" alt="Porsche Macan" id="car_photo">
                 </td>
                 <td id="text">
-                    <h1>Ford F-150</h1>
-                    <h2>MSRP: $65,000 | Available</h2>
+                    <h1>Porsche Macan</h1>
+                    <h2>MSRP: $68,500 | Available</h2>
                     <h3>Condition Estimates:</h3>
-                    <p>Fair (150k+ miles): $15,000</p>
-                    <p>Good (100k+ miles): $30,000</p>
-                    <p>Excellent (10k-100k miles): $45,000</p>
+                    <p>Fair (150k+ miles): $23,000</p>
+                    <p>Good (100k+ miles): $45,000</p>
+                    <p>Excellent (10k-100k miles): $50,000</p>
                 </td>
             </tr>
             <tr>
-                <td style="justify-content: none;">
+                <td>
                     <nav id="reserve_link">
-                        <!-- will add address specific link once available -->
                         <a href="reserve.html">Click Here to Reserve</a>
                     </nav>
                 </td>
             </tr>
         </table>
-        <!-- container allowing user to submit personal service review -->
-        <!-- hidden labels are for accessibility purposes (e.g., screen-readers) -->
-        <div class="review">
-            <form>
-                <label for="rating" style="font-size: 16pt;"><strong>Leave Us A Review!</strong></label>
-                <!-- silder is a placeholder for rating stars -->
-                <label for="stars" hidden>Rate us out of Five Stars</label>
-                <div class="star-rating" id="stars">
-                    <span id="1">&#9733;</span>
-                    <span id="2">&#9733;</span>
-                    <span id="3">&#9733;</span>
-                    <span id="4">&#9733;</span>
-                    <span id="5">&#9733;</span>
-                </div>
-                <!-- will add selection event handling (i.e., textbox changes background color once selected) with js -->
-                <label for="additional-feedback" hidden>Additional Feedback</label>
-                <textarea id="additional-feedback" name="additional-feedback" rows="10" placeholder="Additional feedback (optional, 500 char limit)" maxlength="500"></textarea>
-                <!-- <input type="text" placeholder="Additional feedback (optional, 500 char limit)" id="feedback" name="feedback" maxlength="500"><br> -->
-                <label for="rating-submit" hidden>Submit</label>
-                <input type="submit" name="rating-submit" id="rating-submit">
-            </form>
+        <!-- Reviewer #1: Carl Whittle -->
+        <div class="review" style="text-align: left; height: 320px;">
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <h1><em>"Reasonable prices, excellent service, what more could you ask for?"</em></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="reviewer1.jpg" alt="Profile Picture for Reviewer Carl Whittle" id="reviewerImg">
+                    </td>
+                    <td>
+                        <h2>Carl Whittle</h2>
+                    </td>
+                    <td style="font-size: 110%;">
+                        <h2><strong>&#9733;&#9733;&#9733;&#9733;</strong>&#9733;</h2>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <table class="inventory" id="car2">
-        <tr>
-            <td rowspan="2">
-                <img src="Por.png" alt="Porsche Macan" id="car_photo">
-            </td>
-            <td id="text">
-                <h1>Porsche Macan</h1>
-                <h2>MSRP: $68,500 | Available</h2>
-                <h3>Condition Estimates:</h3>
-                <p>Fair (150k+ miles): $23,000</p>
-                <p>Good (100k+ miles): $45,000</p>
-                <p>Excellent (10k-100k miles): $50,000</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="justify-content: none;">
-                <nav id="reserve_link">
-                    <!-- will add address specific link once available -->
-                    <a href="reserve.html">Click Here to Reserve</a>
-                </nav>
-            </td>
-        </tr>
-    </table>
-    <table class="inventory" id="car3">
-        <tr>
-            <td rowspan="2">
-                <img src="Ferr.png" alt="Ferrari 488 GTB" id="car_photo">
-            </td>
-            <td id="text">
-                <h1>Ferrari 488 GTB</h1>
-                <h2>MSRP: $262,647 | Available</h2>
-                <h3>Condition Estimates:</h3>
-                <p>Fair (150k+ miles): $68,000</p>
-                <p>Good (100k+ miles): $159,000</p>
-                <p>Excellent (10k-100k miles): $240,000</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="justify-content: none;">
-                <nav id="reserve_link">
-                    <!-- will add address specific link once available -->
-                    <a href="reserve.html">Click Here to Reserve</a>
-                </nav>
-            </td>
-        </tr>
-    </table>
-    <table class="inventory" id="car4">
-        <tr>
-            <td rowspan="2">
-                <!-- shows placeholder image -->
-                <img src="merc.png" alt="Mercedes-Benz G500" id="car_photo">
-            </td>
-            <td id="text">
-                <h1>Mercedes-Benz G500</h1>
-                <h2>MSRP: $73,000 | Available</h2>
-                <h3>Condition Estimates:</h3>
-                <p>Fair (150k+ miles): $20,000</p>
-                <p>Good (100k+ miles): $38,000</p>
-                <p>Excellent (10k-100k miles): $58,000</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="justify-content: none;">
-                <nav id="reserve_link">
-                    <!-- will add address specific link once available -->
-                    <a href="reserve.html">Click Here to Reserve</a>
-                </nav>
-            </td>
-        </tr>
-    </table>
+    <div id="row">
+        <!-- Ferrari 488 GTB -->
+        <table class="inventory" id="car3">
+            <tr>
+                <td rowspan="2">
+                    <img src="Ferr.png" alt="Ferrari 488 GTB" id="car_photo">
+                </td>
+                <td id="text">
+                    <h1>Ferrari 488 GTB</h1>
+                    <h2>MSRP: $262,647 | Available</h2>
+                    <h3>Condition Estimates:</h3>
+                    <p>Fair (150k+ miles): $68,000</p>
+                    <p>Good (100k+ miles): $159,000</p>
+                    <p>Excellent (10k-100k miles): $240,000</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <nav id="reserve_link">
+                        <a href="reserve.html">Click Here to Reserve</a>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+        <!-- Reviewer #2: Roy Langstrom -->
+        <div class="review" style="text-align: left; height: 285px;">
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <h1><em>"Service department was slow, but I got my money's worth."</em></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="reviewer2.jpg" alt="Profile Picture for Reviewer Roy Langstrom" id="reviewerImg">
+                    </td>
+                    <td>
+                        <h2>Roy Langstrom</h2>
+                    </td>
+                    <td style="font-size: 110%;">
+                        <h2><strong>&#9733;&#9733;&#9733;</strong>&#9733;&#9733;</h2>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="row">
+        <!-- Mercedes-Benz G500 -->
+        <table class="inventory" id="car4">
+            <tr>
+                <td rowspan="2">
+                    <img src="merc.png" alt="Mercedes-Benz G500" id="car_photo">
+                </td>
+                <td id="text">
+                    <h1>Mercedes-Benz G500</h1>
+                    <h2>MSRP: $73,000 | Available</h2>
+                    <h3>Condition Estimates:</h3>
+                    <p>Fair (150k+ miles): $20,000</p>
+                    <p>Good (100k+ miles): $38,000</p>
+                    <p>Excellent (10k-100k miles): $58,000</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <nav id="reserve_link">
+                        <a href="reserve.html">Click Here to Reserve</a>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+        <!-- Reviewer #3: Mary Hobbs -->
+        <div class="review" style="text-align: left; height: 320px;">
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <h1><em>"The employees were so nice! Ask for Luke, he'll get you what you need!"</em></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="reviewer3.jpg" alt="Profile Picture for Reviewer Mary Hobbs" id="reviewerImg">
+                    </td>
+                    <td>
+                        <h2>Mary Hobbs</h2>
+                    </td>
+                    <td style="font-size: 110%;">
+                        <h2><strong>&#9733;&#9733;&#9733;&#9733;&#9733;</strong></h2>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    
+    <!-- Dodge Durango -->
     <table class="inventory" id="car5">
         <tr>
-            <td>
+            <td rowspan="2">
                 <img src="Durango.png" alt="Dodge Durango Discontinued" id="car_photo">
             </td>
             <td id="text">
                 <h1>Dodge Durango</h1>
-                <h2>Discontinued</h2>
+                <h2>No Longer Available</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
             </td>
         </tr>
     </table>
 </body>
 <!--Disclaimer that is present in each page-->
 <footer>
-    <strong>DISCLAMIER</strong>
-    <p>Our webpage only allows the reservation of a single vehicle.</p>
+    <h3>DISCLAIMER</h3>
+    <p>Our webpage only allows the reservation of a single vehicle. Please refer to our inventory page to see the cars
+        we offer.</p>
 </footer>
 </html>
