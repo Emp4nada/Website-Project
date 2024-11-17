@@ -59,8 +59,8 @@
         email = sessionStorage.getItem("Email");
         car = sessionStorage.getItem("carChoice");
         date = sessionStorage.getItem("Date");
-        const [year, month, day] = date.split("-");
-        date = new Date(year,month,day);
+        [year, month, day] = date.split("-");
+        date = new Date(year,month - 1,day);
         // Formats the date as MM/DD/YYYY using the Intl.DateTImeFormat object
         const formatter = new Intl.DateTimeFormat('en-US', {
             month: '2-digit', 
